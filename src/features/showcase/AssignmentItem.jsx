@@ -35,6 +35,13 @@ const DaysLeft = styled.span`
   font-weight: 500;
 `;
 
+const Course = styled.p`
+  font-size: 1.8rem;
+  color: var(--color-grey-500);
+  font-weight: 500;
+  margin-bottom: 1rem;
+`;
+
 const CheckboxContainer = styled.div`
   display: flex;
   align-items: center;
@@ -70,7 +77,14 @@ const StyledAssignmentItem = styled.div`
 `;
 
 function AssignmentItem({ assignment }) {
-  const { id: assignmentId, name, dueDate, status, isUrgent } = assignment;
+  const {
+    id: assignmentId,
+    name,
+    dueDate,
+    status,
+    isUrgent,
+    course,
+  } = assignment;
 
   const [isUrgentStatus, setIsUrgentStatus] = useState(isUrgent);
   const navigate = useNavigate();
@@ -102,10 +116,9 @@ function AssignmentItem({ assignment }) {
         </button>
       </Row>
 
-      <Row responsive="true">
-        <Date>Due date: {formatDate(dueDate)}</Date>
-        {isUrgent && status !== "done" ? <Urgent /> : ""}
-      </Row>
+      <Date>Due date: {formatDate(dueDate)}</Date>
+      <Course>{course}</Course>
+      {isUrgent && status !== "done" ? <Urgent /> : ""}
 
       <CheckboxContainer>
         <StyledCheckbox

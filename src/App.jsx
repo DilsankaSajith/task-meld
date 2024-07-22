@@ -10,7 +10,6 @@ import GlobalStyles from "../styles/GlobalStyles";
 import Home from "./pages/Home";
 import Details from "./pages/Details";
 
-// Testing Git and Github
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
