@@ -9,6 +9,7 @@ import AppLayout from "./ui/AppLayout";
 import GlobalStyles from "../styles/GlobalStyles";
 import Home from "./pages/Home";
 import Details from "./pages/Details";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 // Testing Git
 
@@ -30,7 +31,13 @@ function App() {
           <Routes>
             <Route path="home" element={<Home />} />
             <Route path="login" element={<Login />} />
-            <Route element={<AppLayout />}>
+            <Route
+              element={
+                <ProtectedRoute>
+                  <AppLayout />
+                </ProtectedRoute>
+              }
+            >
               <Route index element={<Navigate replace to="showcase" />} />
               <Route path="create" element={<Create />} />
               <Route path="showcase" element={<Showcase />} />
