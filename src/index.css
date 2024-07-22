@@ -1,0 +1,11 @@
+.notDone {
+  background-color: red;
+}
+
+.working {
+  background-color: yellow;
+}
+
+.done {
+  background-color: green;
+}
