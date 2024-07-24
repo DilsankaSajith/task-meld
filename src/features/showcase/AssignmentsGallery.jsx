@@ -1,17 +1,17 @@
-import styled from "styled-components";
-import AssignmentItem from "./AssignmentItem";
-import useAssignments from "./useAssignments";
-import { useSearchParams } from "react-router-dom";
+import styled from 'styled-components';
+import AssignmentItem from './AssignmentItem';
+import useAssignments from './useAssignments';
+import { useSearchParams } from 'react-router-dom';
+import Spinner from '../../ui/Spinner';
 
 const StyledAssignmentsGallery = styled.div`
-  padding-top: 2rem;
   display: grid;
-  grid-template-columns: 1fr;
+  margin-top: 4rem;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.6rem;
-  margin-top: 2rem;
 
-  @media (min-width: 930px) {
-    grid-template-columns: 1fr 1fr;
+  @media (max-width: 64.3em) {
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -20,29 +20,28 @@ function AssignmentsGallery() {
   const { assignments, isLoading } = useAssignments();
   let filteredAssignments;
 
-  if (isLoading) return <p>Loading...</p>;
-  if (!assignments.length) return <p>No assignments</p>;
+  if (isLoading) return <Spinner />;
 
-  const filterValue = searchParams.get("status") || "all";
+  const filterValue = searchParams.get('status') || 'all';
 
   // FILTERING
-  if (filterValue === "all") filteredAssignments = assignments;
-  if (filterValue === "done")
+  if (filterValue === 'all') filteredAssignments = assignments;
+  if (filterValue === 'done')
     filteredAssignments = assignments.filter(
-      (assignment) => assignment.status === "done"
+      (assignment) => assignment.status === 'done'
     );
-  if (filterValue === "working")
+  if (filterValue === 'working')
     filteredAssignments = assignments.filter(
-      (assignment) => assignment.status === "working"
+      (assignment) => assignment.status === 'working'
     );
-  if (filterValue === "not-done")
+  if (filterValue === 'not-done')
     filteredAssignments = assignments.filter(
-      (assignment) => assignment.status === "notDone"
+      (assignment) => assignment.status === 'notDone'
     );
-  if (filterValue === "urgent")
+  if (filterValue === 'urgent')
     filteredAssignments = assignments.filter(
       (assignment) =>
-        assignment.isUrgent === true && assignment.status !== "done"
+        assignment.isUrgent === true && assignment.status !== 'done'
     );
 
   // SORTING

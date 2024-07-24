@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledUrgent = styled.div`
   color: var(--color-grey-0);

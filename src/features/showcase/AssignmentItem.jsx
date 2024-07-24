@@ -1,45 +1,44 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import dayjs from "dayjs";
-import styled, { css } from "styled-components";
-import useDeleteAssignment from "./useDeleteAssignment";
-import useUpdateStatus from "./useUpdateStatus";
-import useUpdateUrgent from "./useUpdateUrgent";
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import styled from 'styled-components';
+import useDeleteAssignment from './useDeleteAssignment';
+import useUpdateStatus from './useUpdateStatus';
+import useUpdateUrgent from './useUpdateUrgent';
 
-import { HiXMark } from "react-icons/hi2";
-import Heading from "../../ui/Heading";
-import Row from "../../ui/Row";
-import relativeTime from "dayjs/plugin/relativeTime";
-import Urgent from "../../ui/Urgent";
-import ButtonGroup from "../../ui/ButtonGroup";
-import Button from "../../ui/Button";
-import { formatDate } from "../../../utils/formatDates";
+import { HiXMark } from 'react-icons/hi2';
+import Heading from '../../ui/Heading';
+import Row from '../../ui/Row';
+import Urgent from '../../ui/Urgent';
+import ButtonGroup from '../../ui/ButtonGroup';
+import Button from '../../ui/Button';
+
+import { formatDate } from '../../../utils/formatDates';
+import Spinner from '../../ui/Spinner';
 
 dayjs.extend(relativeTime);
 
 const statusColor = {
-  done: "green",
-  notDone: "red",
-  working: "yellow",
+  done: 'green',
+  notDone: 'red',
+  working: 'yellow',
 };
 
 const Date = styled.p`
-  color: var(--color-grey-600);
   font-weight: 500;
-  margin-bottom: 1rem;
+  margin-bottom: 1.8rem;
 `;
 
 const DaysLeft = styled.span`
-  font-size: 1.4rem;
-  color: var(--color-grey-500);
+  font-size: 1.8rem;
+  color: var(--color-grey-700);
   font-weight: 500;
 `;
 
 const Course = styled.p`
   font-size: 1.8rem;
-  color: var(--color-grey-500);
-  font-weight: 500;
-  margin-bottom: 1rem;
+  font-weight: 700;
 `;
 
 const CheckboxContainer = styled.div`
@@ -71,9 +70,9 @@ const StyledAssignmentItem = styled.div`
   position: relative;
   overflow: hidden;
 
-  padding: 1rem;
+  padding: 2rem;
   border: 0.5px solid var(--color-${(props) => props.type}-500);
-  border-left: 6px solid var(--color-${(props) => props.type}-500);
+  border-left: 10px solid var(--color-${(props) => props.type}-500);
 `;
 
 function AssignmentItem({ assignment }) {
@@ -86,12 +85,12 @@ function AssignmentItem({ assignment }) {
     course,
   } = assignment;
 
-  const [isUrgentStatus, setIsUrgentStatus] = useState(isUrgent);
   const navigate = useNavigate();
 
+  const [isUrgentStatus, setIsUrgentStatus] = useState(isUrgent);
   const { isDeleting, deleteAssignment } = useDeleteAssignment();
-  const { updateStatus } = useUpdateStatus();
-  const { updateUrgent } = useUpdateUrgent();
+  const { isUpdatingStatus, updateStatus } = useUpdateStatus();
+  const { isUpdatingUrgent, updateUrgent } = useUpdateUrgent();
 
   function handleEditIsUrgent() {
     setIsUrgentStatus((isUrgentStatus) => !isUrgentStatus);
@@ -103,7 +102,7 @@ function AssignmentItem({ assignment }) {
   return (
     <StyledAssignmentItem type={statusColor[status]}>
       <Row direction="horizontal">
-        <Row responsive="true">
+        <Row direction="horizontal">
           <Heading as="h3">{name}</Heading>
           <DaysLeft>{daysLeft}</DaysLeft>
         </Row>
@@ -116,16 +115,16 @@ function AssignmentItem({ assignment }) {
         </button>
       </Row>
 
-      <Date>Due date: {formatDate(dueDate)}</Date>
       <Course>{course}</Course>
-      {isUrgent && status !== "done" ? <Urgent /> : ""}
+      <Date>Due date: {formatDate(dueDate)}</Date>
+      {isUrgent && status !== 'done' ? <Urgent /> : ''}
 
       <CheckboxContainer>
         <StyledCheckbox
           type="checkbox"
           checked={isUrgentStatus}
           onChange={handleEditIsUrgent}
-          disabled={status === "done"}
+          disabled={status === 'done' || isUpdatingUrgent}
         />
         <span> Is this task urgent ?</span>
       </CheckboxContainer>
@@ -137,6 +136,7 @@ function AssignmentItem({ assignment }) {
           onClick={(e) =>
             updateStatus({ status: e.target.value, id: assignmentId })
           }
+          disabled={isUpdatingStatus}
         >
           Done
         </Button>
@@ -146,6 +146,7 @@ function AssignmentItem({ assignment }) {
           onClick={(e) =>
             updateStatus({ status: e.target.value, id: assignmentId })
           }
+          disabled={isUpdatingStatus}
         >
           Working
         </Button>
@@ -155,12 +156,14 @@ function AssignmentItem({ assignment }) {
           onClick={(e) =>
             updateStatus({ status: e.target.value, id: assignmentId })
           }
+          disabled={isUpdatingStatus}
         >
           Not-done
         </Button>
         <Button
           bgcolor={statusColor[status]}
           onClick={() => navigate(`/showcase/${assignmentId}`)}
+          disabled={isUpdatingStatus}
         >
           Details
         </Button>

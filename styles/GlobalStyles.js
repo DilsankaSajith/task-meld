@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
 :root {
@@ -17,13 +17,13 @@ const GlobalStyles = createGlobalStyle`
   --color-green-200: #bbf7d0;
   --color-green-500: #22c55e;
 
-    /* Green */
+    /* Red */
   --color-red-50: #fef2f2;
   --color-red-100: #fee2e2;
   --color-red-200: #fecaca;
   --color-red-500: #ef4444;
 
-    /* Green */
+    /* Yellow */
   --color-yellow-50: #fefce8;
   --color-yellow-100: #fef9c3;
   --color-yellow-200: #fef08a;
@@ -146,6 +146,24 @@ img {
   /* For dark mode */
   filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
 }
+
+@media (max-width: 64.3em) {
+    html{
+      font-size: 56.25%;
+    }
+  }
+
+@media (max-width: 550px) {
+    html{
+      font-size: 50%;
+    }
+  }
+
+@media (max-width: 486px) {
+    html{
+      font-size: 43.75%;
+    }
+  }
 
 /*
 FOR DARK MODE

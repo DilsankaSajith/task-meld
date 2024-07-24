@@ -1,15 +1,15 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-import Showcase from "./pages/Showcase";
-import Create from "./pages/Create";
-import Login from "./pages/Login";
-import AppLayout from "./ui/AppLayout";
-import GlobalStyles from "../styles/GlobalStyles";
-import Home from "./pages/Home";
-import Details from "./pages/Details";
-import ProtectedRoute from "./ui/ProtectedRoute";
+import Showcase from './pages/Showcase';
+import Create from './pages/Create';
+import Login from './pages/Login';
+import AppLayout from './ui/AppLayout';
+import GlobalStyles from '../styles/GlobalStyles';
+import Home from './pages/Home';
+import Details from './pages/Details';
+import ProtectedRoute from './ui/ProtectedRoute';
 
 // Testing Git
 
