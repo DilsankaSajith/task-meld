@@ -1,6 +1,7 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useNavigate } from "react-router";
-import { createAssignment as createAssignmentApi } from "../../services/apiAssignments";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router';
+import { createAssignment as createAssignmentApi } from '../../services/apiAssignments';
+import toast from 'react-hot-toast';
 
 export function useCreateAssignment() {
   const queryClient = useQueryClient();
@@ -10,9 +11,10 @@ export function useCreateAssignment() {
     mutationFn: createAssignmentApi,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["assignments"],
+        queryKey: ['assignments'],
       });
-      navigate("/showcase");
+      navigate('/showcase');
+      toast.success('New assignment successfully created');
     },
   });
 

@@ -1,5 +1,6 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteAssignment as deleteAssignmentApi } from "../../services/apiAssignments";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { deleteAssignment as deleteAssignmentApi } from '../../services/apiAssignments';
+import toast from 'react-hot-toast';
 
 export default function useDeleteAssignment() {
   const queryClient = useQueryClient();
@@ -8,8 +9,9 @@ export default function useDeleteAssignment() {
     mutationFn: deleteAssignmentApi,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["assignments"],
+        queryKey: ['assignments'],
       });
+      toast.error('Assignment has been successfully deleted');
     },
   });
 

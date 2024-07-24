@@ -10,6 +10,7 @@ import GlobalStyles from '../styles/GlobalStyles';
 import Home from './pages/Home';
 import Details from './pages/Details';
 import ProtectedRoute from './ui/ProtectedRoute';
+import { Toaster } from 'react-hot-toast';
 
 // Testing Git
 
@@ -45,6 +46,27 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
+
+        <Toaster
+          position="top-center"
+          gutter={12}
+          containerStyle={{ margin: '8px' }}
+          toastOptions={{
+            success: {
+              duration: 3000,
+            },
+            error: {
+              duration: 3000,
+            },
+            style: {
+              fontSize: '1.6rem',
+              maxWidth: '50rem',
+              padding: '1.6rem 2.4rem',
+              backgroundColor: 'var(--color-grey-0)',
+              color: 'var(--color-grey-700)',
+            },
+          }}
+        />
       </QueryClientProvider>
     </>
   );

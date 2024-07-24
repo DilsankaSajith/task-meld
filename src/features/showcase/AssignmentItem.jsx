@@ -69,6 +69,7 @@ const StyledAssignmentItem = styled.div`
   background-color: var(--color-${(props) => props.type}-200);
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-md);
 
   padding: 2rem;
   border: 0.5px solid var(--color-${(props) => props.type}-500);

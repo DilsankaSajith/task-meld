@@ -8,7 +8,7 @@ const StyledAssignmentsGallery = styled.div`
   display: grid;
   margin-top: 4rem;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.6rem;
+  gap: 2.4rem;
 
   @media (max-width: 64.3em) {
     grid-template-columns: 1fr;

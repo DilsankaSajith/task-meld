@@ -147,21 +147,21 @@ img {
   filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
 }
 
-@media (max-width: 64.3em) {
+@media (max-width: 65.3em) {
     html{
       font-size: 56.25%;
     }
   }
 
-@media (max-width: 550px) {
+@media (max-width: 34.375em) {
     html{
       font-size: 50%;
     }
   }
 
-@media (max-width: 486px) {
+@media (max-width: 30.375em) {
     html{
-      font-size: 43.75%;
+      font-size: 42.75%;
     }
   }
 

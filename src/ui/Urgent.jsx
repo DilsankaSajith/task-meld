@@ -1,28 +1,28 @@
 import styled from 'styled-components';
 
 const StyledUrgent = styled.div`
-  color: var(--color-grey-0);
-  text-transform: uppercase;
-  background-color: var(--color-red-500);
-  position: absolute;
+  background: rgb(154, 21, 21);
+  background: linear-gradient(
+    90deg,
+    rgba(154, 21, 21, 1) 0%,
+    rgba(255, 2, 2, 1) 42%,
+    rgba(180, 0, 0, 1) 100%
+  );
   text-align: center;
+  position: absolute;
+  top: 22%;
+  right: -15%;
+  width: 30rem;
+  rotate: 45deg;
+  padding: 0.25rem 0;
   box-shadow: var(--shadow-md);
-  border-radius: var(--border-radius-xl);
 
-  right: 5%;
-  padding: 0.3rem 0.5rem;
-  width: 100px;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-  font-weight: 500;
-
-  @media (min-width: 1246px) {
-    padding: 0.5rem 1rem;
-    margin-top: 1.5rem;
-    top: 10%;
-    right: -7%;
-    width: 170px;
-    transform: rotate(45deg);
+  @media (max-width: 81.875em) {
+    rotate: none;
+    width: 10rem;
+    top: 8rem;
+    right: 2rem;
+    border-radius: var(--border-radius-md);
   }
 `;
 
