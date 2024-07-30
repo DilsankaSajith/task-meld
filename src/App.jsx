@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { Toaster } from 'react-hot-toast';
 
 import Showcase from './pages/Showcase';
 import Create from './pages/Create';
@@ -10,7 +11,7 @@ import GlobalStyles from '../styles/GlobalStyles';
 import Home from './pages/Home';
 import Details from './pages/Details';
 import ProtectedRoute from './ui/ProtectedRoute';
-import { Toaster } from 'react-hot-toast';
+import Signup from './pages/Signup';
 
 // Testing Git
 
@@ -32,6 +33,7 @@ function App() {
           <Routes>
             <Route path="home" element={<Home />} />
             <Route path="login" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
             <Route
               element={
                 <ProtectedRoute>

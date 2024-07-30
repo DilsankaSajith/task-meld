@@ -1,11 +1,13 @@
-import { useState } from "react";
-import { login } from "../services/apiAuth";
-import { useLogin } from "../features/authentication/useLogin";
-import SpinnerMini from "../ui/SpinnerMini";
+import { useState } from 'react';
+import { login } from '../services/apiAuth';
+import { useLogin } from '../features/authentication/useLogin';
+import SpinnerMini from '../ui/SpinnerMini';
+import { useNavigate } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 function Login() {
-  const [email, setEmail] = useState("dilsanka@example.com");
-  const [password, setPassword] = useState("Dilsanka@39");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { login, isLoading } = useLogin();
 
   const handleSubmit = function (e) {
@@ -15,8 +17,8 @@ function Login() {
       { email, password },
       {
         onSettled: () => {
-          setEmail("");
-          setPassword("");
+          setEmail('');
+          setPassword('');
         },
       }
     );
@@ -51,9 +53,11 @@ function Login() {
         </div>
 
         <button disabled={isLoading}>
-          {!isLoading ? "Log in" : <SpinnerMini />}
+          {!isLoading ? 'Log in' : <SpinnerMini />}
         </button>
       </form>
+      <p>Doesn't have an account? Create one here 😀</p>
+      <NavLink to="/home">Signup</NavLink>
     </div>
   );
 }
