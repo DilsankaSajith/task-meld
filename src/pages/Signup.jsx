@@ -3,6 +3,17 @@ import { useForm } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSignup } from '../features/authentication/useSignup';
 
+import AuthLayout from '../ui/AuthLayout';
+import Form from '../ui/Form';
+import FormRowVertical from '../ui/FormRowVertical';
+import Heading from '../ui/Heading';
+import Label from '../ui/Label';
+import Input from '../ui/Input';
+import AuthButton from '../ui/AuthButton';
+import ButtonText from '../ui/ButtonText';
+import Error from '../ui/Error';
+import SpinnerMini from '../ui/SpinnerMini';
+
 function Signup() {
   const { register, formState, getValues, handleSubmit, reset } = useForm();
   const { errors } = formState;
@@ -20,22 +31,22 @@ function Signup() {
   }
 
   return (
-    <div>
-      <h3>Signup</h3>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label htmlFor="fullname">Full name</label>
-          <input
+    <AuthLayout>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <Heading as="h4">Signup</Heading>
+        <FormRowVertical>
+          <Label htmlFor="fullname">Full name</Label>
+          <Input
             type="text"
             id="fullname"
             {...register('fullname', { required: 'This field is required' })}
           />
-          <p>{errors?.fullname?.message}</p>
-        </div>
+          <Error>{errors?.fullname?.message}</Error>
+        </FormRowVertical>
 
-        <div>
-          <label htmlFor="email">Email address</label>
-          <input
+        <FormRowVertical>
+          <Label htmlFor="email">Email address</Label>
+          <Input
             type="email"
             id="email"
             {...register('email', {
@@ -46,12 +57,12 @@ function Signup() {
               },
             })}
           />
-          <p>{errors?.email?.message}</p>
-        </div>
+          <Error>{errors?.email?.message}</Error>
+        </FormRowVertical>
 
-        <div>
-          <label htmlFor="password">Password (min 8 characters)</label>
-          <input
+        <FormRowVertical>
+          <Label htmlFor="password">Password (min 8 characters)</Label>
+          <Input
             type="password"
             id="password"
             {...register('password', {
@@ -62,12 +73,12 @@ function Signup() {
               },
             })}
           />
-          <p>{errors?.password?.message}</p>
-        </div>
+          <Error>{errors?.password?.message}</Error>
+        </FormRowVertical>
 
-        <div>
-          <label htmlFor="repeatPassword">Repeat password</label>
-          <input
+        <FormRowVertical>
+          <Label htmlFor="repeatPassword">Repeat password</Label>
+          <Input
             type="password"
             id="passwordConfirm"
             {...register('passwordConfirm', {
@@ -76,14 +87,16 @@ function Signup() {
                 value === getValues().password || 'Passwords need to match',
             })}
           />
-          <p>{errors?.passwordConfirm?.message}</p>
-        </div>
+          <Error>{errors?.passwordConfirm?.message}</Error>
+        </FormRowVertical>
 
-        <button>Signup</button>
-      </form>
-      <p>Already have an account? Login here 😀</p>
-      <NavLink to="/login">Login</NavLink>
-    </div>
+        <AuthButton> {!isLoading ? 'Signup' : <SpinnerMini />}</AuthButton>
+        <p>Already have an account? Login here </p>
+        <ButtonText>
+          <NavLink to="/login">Login &rarr;</NavLink>
+        </ButtonText>
+      </Form>
+    </AuthLayout>
   );
 }
 
