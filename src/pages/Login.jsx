@@ -11,6 +11,7 @@ import FormRowVertical from '../ui/FormRowVertical';
 import Label from '../ui/Label';
 import Input from '../ui/Input';
 import AuthButton from '../ui/AuthButton';
+import Logo from '../ui/Logo';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -32,42 +33,45 @@ function Login() {
   };
 
   return (
-    <AuthLayout>
-      <Form onSubmit={handleSubmit}>
-        <Heading as="h4">Log in to your account</Heading>
-        <FormRowVertical>
-          <Label htmlFor="email">Email address</Label>
-          <Input
-            type="email"
-            id="email"
-            disabled={isLoading}
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-        </FormRowVertical>
+    <>
+      <AuthLayout>
+        <Logo src="/logo-light.png" alt="Logo" />
+        <Form onSubmit={handleSubmit}>
+          <Heading as="h4">Log in to your account</Heading>
+          <FormRowVertical>
+            <Label htmlFor="email">Email address</Label>
+            <Input
+              type="email"
+              id="email"
+              disabled={isLoading}
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+          </FormRowVertical>
 
-        <FormRowVertical>
-          <Label htmlFor="password">Password</Label>
-          <Input
-            type="password"
-            id="password"
-            disabled={isLoading}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </FormRowVertical>
+          <FormRowVertical>
+            <Label htmlFor="password">Password</Label>
+            <Input
+              type="password"
+              id="password"
+              disabled={isLoading}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </FormRowVertical>
 
-        <AuthButton disabled={isLoading}>
-          {!isLoading ? 'Log in' : <SpinnerMini />}
-        </AuthButton>
-        <p>Doesn't have an account? Create one here</p>
-        <ButtonText>
-          <NavLink to="/home">Signup &rarr;</NavLink>
-        </ButtonText>
-      </Form>
-    </AuthLayout>
+          <AuthButton disabled={isLoading}>
+            {!isLoading ? 'Log in' : <SpinnerMini />}
+          </AuthButton>
+          <p>Doesn't have an account? Create one here</p>
+          <ButtonText>
+            <NavLink to="/home">Signup &rarr;</NavLink>
+          </ButtonText>
+        </Form>
+      </AuthLayout>
+    </>
   );
 }
 

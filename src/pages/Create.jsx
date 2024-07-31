@@ -10,7 +10,7 @@ function Create() {
         <Heading as="h1">Create your task</Heading>
         <Emoji src="/emojis/check-mark-button.png"></Emoji>
       </FlexX>
-      <CreateAssignmentForm />;
+      <CreateAssignmentForm />
     </>
   );
 }

@@ -13,7 +13,6 @@ import AuthButton from '../ui/AuthButton';
 import ButtonText from '../ui/ButtonText';
 import Error from '../ui/Error';
 import SpinnerMini from '../ui/SpinnerMini';
-
 function Signup() {
   const { register, formState, getValues, handleSubmit, reset } = useForm();
   const { errors } = formState;

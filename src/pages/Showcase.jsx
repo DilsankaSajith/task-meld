@@ -1,5 +1,7 @@
 import AssignmentsGallery from '../features/showcase/AssignmentsGallery';
+import Emoji from '../ui/Emoji';
 import Filter from '../ui/Filter';
+import FlexX from '../ui/FlexX';
 import Heading from '../ui/Heading';
 import Row from '../ui/Row';
 
@@ -7,7 +9,10 @@ function Showcase() {
   return (
     <>
       <Row responsive="true">
-        <Heading as="h1">My assignments 🎓</Heading>
+        <FlexX>
+          <Heading as="h1">My assignments</Heading>
+          <Emoji src="/emojis/graduation-cap.png" />
+        </FlexX>
         <Filter
           filterField={'status'}
           options={[
